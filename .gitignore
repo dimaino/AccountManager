@@ -1,0 +1,6 @@
+appsettings.json
+obj/*
+bin/*
+logs/*
+Migrations/*
+ModelBuilderSensitiveData.cs
