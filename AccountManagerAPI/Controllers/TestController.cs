@@ -20,7 +20,7 @@ namespace AccountManagerAPI.Controllers
 
         // GET api/test
         [HttpGet]
-        public async Task<IActionResult> GetAccounts()
+        public async Task<IActionResult> GetEmailAccounts()
         {
             try
             {
@@ -67,6 +67,48 @@ namespace AccountManagerAPI.Controllers
             try
             {
                 return Ok(await _Context.Codes.ToListAsync());
+            }
+            catch(Exception ex)
+            {
+                return StatusCode(500, "Internal Server Error.");
+            }
+        }
+
+        // GET api/test/events
+        [HttpGet("events")]
+        public async Task<IActionResult> GetEvents()
+        {
+            try
+            {
+                return Ok(await _Context.Events.ToListAsync());
+            }
+            catch(Exception ex)
+            {
+                return StatusCode(500, "Internal Server Error.");
+            }
+        }
+
+        // GET api/test/accounts
+        [HttpGet("accounts")]
+        public async Task<IActionResult> GetAccounts()
+        {
+            try
+            {
+                return Ok(await _Context.Accounts.ToListAsync());
+            }
+            catch(Exception ex)
+            {
+                return StatusCode(500, "Internal Server Error.");
+            }
+        }
+
+        // GET api/test/gameplatforms
+        [HttpGet("gameplatforms")]
+        public async Task<IActionResult> GetGamePlatforms()
+        {
+            try
+            {
+                return Ok(await _Context.GamePlatforms.ToListAsync());
             }
             catch(Exception ex)
             {
