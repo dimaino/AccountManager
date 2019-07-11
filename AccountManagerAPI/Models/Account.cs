@@ -9,6 +9,8 @@ namespace AccountManagerAPI.Models
 {
 	public class Account
     {
+        public string Username {get;set;}
+        public string Password {get;set;}
         public int EmailAccountId {get;set;}
         public EmailAccount EmailAccount {get;set;}
         public int PlatformId {get;set;}

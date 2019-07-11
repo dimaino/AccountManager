@@ -2119,6 +2119,7 @@ namespace AccountManagerAPI
             new Game() 
             {
 				GameId = 178,
+<<<<<<< HEAD
 				Name = "Battlefield Play4Free",
 				ConnectionType = 2,
 				ReleaseDate = new DateTime(2011, 4, 4),
