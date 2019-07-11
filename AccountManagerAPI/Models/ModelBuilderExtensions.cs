@@ -2115,6 +2115,50 @@ namespace AccountManagerAPI
 				CreatedAt = DateTime.Now,
 				UpdatedAt = DateTime.Now,
 				PlatformId = 12
+			},
+            new Game() 
+            {
+				GameId = 178,
+				Name = "Diablo 3",
+				ConnectionType = 2,
+				ReleaseDate = new DateTime(2012, 5, 15),
+				URLToDocumentation = null,
+				CreatedAt = DateTime.Now,
+				UpdatedAt = DateTime.Now,
+				PlatformId = 11
+			},
+            new Game() 
+            {
+				GameId = 179,
+				Name = "Minecraft",
+				ConnectionType = 2,
+				ReleaseDate = new DateTime(2012, 5, 15),
+				URLToDocumentation = null,
+				CreatedAt = DateTime.Now,
+				UpdatedAt = DateTime.Now,
+				PlatformId = 9
+			},
+            new Game() 
+            {
+				GameId = 180,
+				Name = "World of Tanks",
+				ConnectionType = 2,
+				ReleaseDate = new DateTime(2010, 8, 12),
+				URLToDocumentation = null,
+				CreatedAt = DateTime.Now,
+				UpdatedAt = DateTime.Now,
+				PlatformId = 9
+			},
+            new Game() 
+            {
+				GameId = 181,
+				Name = "League of Legends",
+				ConnectionType = 2,
+				ReleaseDate = new DateTime(2009, 10, 27),
+				URLToDocumentation = null,
+				CreatedAt = DateTime.Now,
+				UpdatedAt = DateTime.Now,
+				PlatformId = 9
 			});
 		}
 	}
