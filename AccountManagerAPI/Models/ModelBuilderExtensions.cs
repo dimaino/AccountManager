@@ -87,14 +87,6 @@ namespace AccountManagerAPI
 			new Platform() 
             {
 				PlatformId = 10,
-				Name = "Playsation",
-				URLToDocumentation = null,
-				CreatedAt = DateTime.Now,
-				UpdatedAt = DateTime.Now
-			},
-			new Platform() 
-            {
-				PlatformId = 11,
 				Name = "BattleNet",
 				URLToDocumentation = "http://ddc.intel.com/Production/loancenter/DDLC Prep Documents/Games and Entertainment/Video Games/Battlenet/Battle Net Client - BKM.docx",
 				CreatedAt = DateTime.Now,
@@ -102,9 +94,17 @@ namespace AccountManagerAPI
 			},
 			new Platform() 
             {
-				PlatformId = 12,
+				PlatformId = 11,
 				Name = "Intel Appup",
 				URLToDocumentation = "http://ddc.intel.com/Production/loancenter/DDLC Prep Documents/Games and Entertainment/Video Games/Intel AppUp/Install and Use Guide - Intel AppUp.docx",
+				CreatedAt = DateTime.Now,
+				UpdatedAt = DateTime.Now
+			},
+			new Platform() 
+            {
+				PlatformId = 12,
+				Name = "Lego Mini Online",
+				URLToDocumentation = "",
 				CreatedAt = DateTime.Now,
 				UpdatedAt = DateTime.Now
 			});
@@ -2115,6 +2115,17 @@ namespace AccountManagerAPI
 				CreatedAt = DateTime.Now,
 				UpdatedAt = DateTime.Now,
 				PlatformId = 12
+			},
+            new Game() 
+            {
+				GameId = 178,
+				Name = "Battlefield Play4Free",
+				ConnectionType = 2,
+				ReleaseDate = new DateTime(2011, 4, 4),
+				URLToDocumentation = null,
+				CreatedAt = DateTime.Now,
+				UpdatedAt = DateTime.Now,
+				PlatformId = 9
 			});
 		}
 	}

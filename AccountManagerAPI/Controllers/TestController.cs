@@ -24,7 +24,7 @@ namespace AccountManagerAPI.Controllers
         {
             try
             {
-                return Ok(await _Context.EmailAccounts.ToListAsync());
+                return Ok(await _Context.EmailAccounts.Include(ea => ea.Platforms).ToListAsync());
             }
             catch(Exception ex)
             {
