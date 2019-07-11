@@ -15,10 +15,10 @@ namespace AccountManagerAPI.Models
         public Platform Platform {get;set;}
 
         // Keeps track of Accounts
-        public Boolean CheckedOutStatus {get;set;}
+        public Boolean Status {get;set;} // True = active, false = not active // Dont know password?
 
         // Event
-        public int EventId {get;set;}
+        public int? EventId {get;set;}
         public Event Event {get;set;}
 
     }

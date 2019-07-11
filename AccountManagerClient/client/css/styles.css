@@ -1,0 +1,394 @@
+/* ---------------------------------------------------
+                GLOABAL VARIABLES
+----------------------------------------------------- */
+
+/* Meyer's CSS reset */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+body {
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    background: #ededed;
+}
+
+.darkmode {
+  background-color: #888;
+}
+
+/* ---------------------------------------------------
+                    MAIN NAVBAR
+----------------------------------------------------- */
+
+#menubar {
+    position: fixed;
+    display: block;
+    background: #003c71;
+    width: 100%;
+    height: 60px;
+    z-index: 1;
+}
+
+/* Button for side navbar */
+#button-area-sidenavbar {
+    background: #2c2f35;
+    height: inherit;
+    width: 50px;
+    position: fixed;
+}
+#sidenavbar-postion {
+    top: 8px;
+    left: 10px;
+    position: fixed;
+    width: 29px;
+}
+.bar1, .bar2, .bar3 {
+    height: 5px;
+    background-color: white;
+    margin: 5px 0;
+}
+
+#sidenavbar-postion:hover > .bar1, #sidenavbar-postion:hover > .bar2, #sidenavbar-postion:hover > .bar3 {
+    background-color: gray;
+}
+
+/* Fixed Menu Bar */
+#fixed-menu-navbar {
+    height: inherit;
+    position: fixed;
+    left: 50px;
+    width: calc(100% - 50px);
+}
+
+#fixed-menu-title {
+  font-size: 20px;
+}
+
+#darkmode-option {
+  float: right;
+}
+
+#menu-logo img {
+  width: 51.84px;
+  height: 35.69px;
+}
+
+/* ---------------------------------------------------
+                   SIDEBAR 
+----------------------------------------------------- */
+
+#sidebar {
+    position: fixed;
+    display: block;
+    height: calc(100% - 50px);
+    min-width: 250px;
+    max-width: 250px;
+    background: #2c2f35;
+    color: #fff;
+    transition: all 0.3s;
+    top: 60px;
+    margin-left: -250px;
+}
+
+/* Show Sidebar */
+#sidebar.active {
+    margin-left: 0px;
+}
+  
+#sidebar-header {
+  background-color: #1a242f;
+  text-align: center;
+  font-size: 30px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+  
+.active ul li a {
+  color: white;
+  padding: 10px;
+}
+
+/* ---------------------------------------------------
+    MAIN CONTENT STYLE
+    
+    - Dark Mode is only in the main content area
+----------------------------------------------------- */
+
+#main-content {
+  transition: all 0.3s;
+  height: max-content;
+  top: 60px;
+  position: relative;
+  left: 0px;
+  width: 100%;
+}
+
+/* Color is affected in main content */
+.wrapper {
+  background-color: #ededed;
+}
+
+.wrapper-darkmode {
+  background-color: #888;
+}
+
+/* Expand Main Content */
+#main-content.expanded {
+  width: calc(100% - 250px);
+  left: 250px;
+}
+
+#main-content-header {
+  width: 100%;
+}
+
+.main-content-header {
+  background: white;
+  color: black;
+  border-bottom: 1px solid #ddd;
+}
+
+.main-content-header-darkmode {
+  background-color: black;
+  color: white;
+  border-bottom: 1px solid #555;
+}
+
+#main-content-header p {
+  text-align: center;
+  font-size: 50px;
+  font-weight: bold;
+}
+
+#main-content-wrapper {
+
+}
+
+.main-content-wrapper {
+  background-color: #ededed;
+}
+
+.main-content-wrapper-dark {
+  background-color: #888;
+}
+
+#items-content-wrapper {
+  margin: 15px;
+  border-radius: 5px;
+  padding-bottom: 15px;
+}
+
+.items-content-wrapper {
+  background-color: white;
+}
+
+.items-content-wrapper-darkmode {
+  background-color: #222;
+}
+
+#item-header {
+  width: 100%;
+  font-size: 30px;
+}
+
+.item-header {
+  color: black;
+}
+
+.item-header-darkmode {
+  color:white;
+}
+
+#data-table_wrapper {
+  display: block;
+}
+
+
+#data-table_wrapper .row {
+  margin: 0;
+  display: inline-block;
+  width: 100%;
+  padding-top: 5px;
+  padding-bottom: 2px;
+}
+
+.table-title-bar {
+  background-color: #eee;
+  border-top: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  color: black;
+}
+
+.table-title-bar-darkmode {
+  background-color: #111;
+  border-top: 1px solid #ddd;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  color: white;
+}
+
+/* Auto Generated ids */
+#data-table_info {
+  display: inline-block;
+  padding-right: 10px;
+}
+
+#data-table_length {
+  float:left;
+}
+
+#data-table_filter {
+  display: inline-block;
+}
+
+/* Table Hovering */
+th:hover, tbody tr:hover td {
+  background-color: #bbb;
+}
+
+/* Table Data */
+.even {
+  background-color: #eee;
+}
+
+.even-darkmode {
+  background-color: #555;
+  color: white;
+}
+
+.odd {
+  background-color: white;
+}
+
+.odd-darkmode {
+  background-color: #333;
+  color: white;
+}
+
+/* Table Header */
+.table-header {
+  background-color: #eee;
+  color: black;
+}
+
+.table-header-darkmode {
+  background-color: #111;
+  color: white;
+}
+
+/* Borders: Table Header and Table Data */
+.table thead th, .table tfoot th, td {
+  border: 1px solid #aaa;
+}
+
+/* Arrows */
+
+.arrows {
+  float: right;
+}
+
+.arrow-up {
+  width: 0; 
+  height: 0; 
+  display: block;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid black;
+  margin-bottom: 5px;
+}
+
+.arrow-up-darkmode {
+  width: 0; 
+  height: 0; 
+  display: block;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid white;
+  margin-bottom: 5px;
+}
+
+.arrow-down {
+  width: 0; 
+  height: 0; 
+  display: block;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid black;
+  margin-top: 5px;
+}
+
+.arrow-down-darkmode {
+  width: 0; 
+  height: 0; 
+  display: block;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid white;
+  margin-top: 5px;
+}
+
+/* #item-add-form {
+height: 100px;
+width: 100%;
+} */
+
+.left-side-table-title, .right-side-table-title {
+  display: inline-block;
+}
+
+.right-side-table-title {
+  text-align: right;
+  display: inline-block;
+  vertical-align: top;
+}
+
+select.form-control.input-sm {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.select-show-entries-darkmode {
+  color: white;
+  background-color: #555;
+}
+
+
+.input-search-entries-darkmode {
+  color: white;
+  background-color: #555;
+}
+
+/* Bottom of table */
+.pagination {
+  justify-content: center;
+}
+
+
+/*  */
+/* .app-footer {
+  top: 60px;
+  background: #333;
+  display: block;
+  position: relative;
+  color: white;
+  text-align: center;
+} */
+

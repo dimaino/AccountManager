@@ -52,7 +52,7 @@ namespace AccountManagerAPI.Controllers
         {
             try
             {
-                return Ok(await _Context.Platforms.ToListAsync());
+                return Ok(await _Context.Platforms.Include(p => p.Accounts).ToListAsync());
             }
             catch(Exception ex)
             {
