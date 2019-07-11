@@ -1,6 +1,7 @@
 using System;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using AccountManagerAPI.SeedData;
 
 namespace AccountManagerAPI.Models
 {
@@ -29,8 +30,13 @@ namespace AccountManagerAPI.Models
             base.OnModelCreating(ModelBuilder);
 
             // Use static class for seeded data
-            ModelBuilder.SeedGeneralData();
-            ModelBuilder.SeedSensitiveData();
+            ModelBuilder.AccountSeedData();
+            ModelBuilder.CodeSeedData();
+            ModelBuilder.EmailAccountSeedData();
+            ModelBuilder.EventSeedData();
+            ModelBuilder.GamePlatformSeedData();
+            ModelBuilder.GameSeedData();
+            ModelBuilder.PlatformSeedData();
         }
     }
 }
