@@ -22,8 +22,5 @@ namespace AccountManagerAPI.Models
 
         // Platforms
         public ICollection<Platform> Platforms {get;} = new List<Platform>();
-
-        // Codes
-        public ICollection<Code> Codes {get;} = new List<Code>();
     }
 }

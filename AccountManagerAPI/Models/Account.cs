@@ -9,6 +9,7 @@ namespace AccountManagerAPI.Models
 {
 	public class Account
     {
+        public int AccountId {get;set;}
         public string Username {get;set;}
         public string Password {get;set;}
         public int EmailAccountId {get;set;}
@@ -22,6 +23,7 @@ namespace AccountManagerAPI.Models
         // Event
         public int? EventId {get;set;}
         public Event Event {get;set;}
+        public ICollection<Code> Codes {get;set;}// = new List<Code>();
 
     }
 }

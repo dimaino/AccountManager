@@ -23,7 +23,7 @@ namespace AccountManagerAPI.Models
 
             // Create All Keys for Manay to Many tables
             ModelBuilder.Entity<Account>().HasKey(a => new { a.EmailAccountId, a.PlatformId });
-            ModelBuilder.Entity<Code>().HasKey(c => new { c.AccountId, c.GameId });
+            // ModelBuilder.Entity<Code>().HasKey(c => new { c.AccountId, c.GameId });
             ModelBuilder.Entity<GamePlatform>().HasKey(gp => new { gp.GameId, gp.PlatformId });
 
             // Create base model

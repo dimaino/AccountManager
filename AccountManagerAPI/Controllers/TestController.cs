@@ -38,7 +38,7 @@ namespace AccountManagerAPI.Controllers
         {
             try
             {
-                return Ok(await _Context.Games.ToListAsync());
+                return Ok(await _Context.Games.Include(g => g.Codes).ToListAsync());
             }
             catch(Exception ex)
             {
@@ -66,7 +66,11 @@ namespace AccountManagerAPI.Controllers
         {
             try
             {
-                return Ok(await _Context.Codes.ToListAsync());
+                return Ok(await _Context.Codes.Select(c => new{
+                    c.CodeId,
+                    c.Account.Username,
+                    c.Game.Name
+                }).ToListAsync());
             }
             catch(Exception ex)
             {
@@ -94,7 +98,13 @@ namespace AccountManagerAPI.Controllers
         {
             try
             {
-                return Ok(await _Context.Accounts.ToListAsync());
+                return Ok(await _Context.Accounts.Include(a => a.Codes).Select(a => new{
+                    Username = a.Username,
+                    a.Platform.Name,
+                    Codes = a.Codes.Select(c => new {
+                        Game = c.Game.Name
+                    })
+                }).ToListAsync());
             }
             catch(Exception ex)
             {
