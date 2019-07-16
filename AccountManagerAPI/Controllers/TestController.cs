@@ -38,12 +38,34 @@ namespace AccountManagerAPI.Controllers
         {
             try
             {
-                return Ok(await _Context.Games.Include(g => g.Codes).ToListAsync());
+                return Ok(await _Context.Games.Include(g => g.Codes).ThenInclude(c => c.Account).Select(g => new {
+                    GameTitle = g.Name,
+                    Accounts = g.Codes.Select(c => new{
+                        Username = c.Account.Username,
+                        Password = c.Account.Password
+                    })
+                }).ToListAsync());
             }
             catch(Exception ex)
             {
                 return StatusCode(500, "Internal Server Error.");
             }
+        }
+
+        // GET api/test/games/1
+        [HttpGet("games/{id}")]
+        public async Task<IActionResult> GetGameWithID(int id)
+        {
+            return Ok(await _Context.Games.Include(g => g.Codes).ThenInclude(c => c.Account).ThenInclude(a => a.EmailAccount).Select(g => new {
+                g.GameId,
+                Title = g.Name,
+                Accounts = g.Codes.Select(c => new {
+                    Username = c.Account.Username,
+                    Password = c.Account.Password,
+                    Email = c.Account.EmailAccount.Email,
+                    EmailPassword = c.Account.EmailAccount.EmailPassword
+                })
+            }).FirstOrDefaultAsync(g => g.GameId == id));
         }
 
         // GET api/test/platforms

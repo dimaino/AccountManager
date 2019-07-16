@@ -61,6 +61,10 @@ $(document).ready(function () {
         }
     });
 
+    
+    document.getElementById("SearchBar").innerHTML = window.location.search; // you will have to parse
+
+
     // Dark Mode Button - Toggles classes to make main area appear lighter or darker.
     // TODO: Remove all light and more dark when switching.
     // TODO: When Changing the table if in dark mode make sure new table elments are dark
