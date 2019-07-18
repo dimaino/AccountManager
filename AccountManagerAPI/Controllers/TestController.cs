@@ -52,6 +52,17 @@ namespace AccountManagerAPI.Controllers
             }
         }
 
+        // GET api/test/listgames
+        [HttpGet("listgames")]
+        public async Task<IActionResult> ListGames()
+        {
+                return Ok(await _Context.Games.Select(g => new {
+                    Id = g.GameId,
+                    Title = g.Name
+                }).ToListAsync());
+
+        }
+
         // GET api/test/games/1
         [HttpGet("games/{id}")]
         public async Task<IActionResult> GetGameWithID(int id)
