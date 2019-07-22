@@ -38,13 +38,14 @@ namespace AccountManagerAPI.Controllers
         {
             try
             {
-                return Ok(await _Context.Games.Include(g => g.Codes).ThenInclude(c => c.Account).Select(g => new {
+                return Ok(await _Context.Games.Include(g => g.Platform).Include(g => g.Codes).ThenInclude(c => c.Account).Select(g => new {
                     GameTitle = g.Name,
-                    Accounts = g.Codes.Select(c => new{
-                        Username = c.Account.Username,
-                        Password = c.Account.Password
-                    })
-                }).ToListAsync());
+                    Platform = g.Platform.Name//,
+                    // Accounts = g.Codes.Select(c => new{
+                    //     Username = c.Account.Username,
+                    //     Password = c.Account.Password
+                    // })
+                }).ToArrayAsync());
             }
             catch(Exception ex)
             {

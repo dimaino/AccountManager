@@ -4,6 +4,8 @@ import { AccountService } from '../../../account.service';
 
 import { Account } from '../../../models/account';
 
+declare const MoveSidebarNav: any;
+
 @Component({
   selector: 'app-account-list',
   templateUrl: './account-list.component.html',
@@ -21,16 +23,7 @@ export class AccountListComponent implements OnInit {
   }
 
   ngOnInit() {
-    var sidebar = document.getElementById('sidebar');
-    var mainContent = document.getElementById('main-content');
-    if(sidebar.classList.contains('active'))
-    {
-      document.getElementById('main-content').className = "expanded";
-    }
-    document.getElementById('sidenavbar-postion').onclick = function() {
-        sidebar.classList.toggle('active');
-        mainContent.classList.toggle('expanded');
-    };
+    MoveSidebarNav();
   }
 
 }

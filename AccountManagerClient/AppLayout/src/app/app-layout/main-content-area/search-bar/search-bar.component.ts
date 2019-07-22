@@ -2,49 +2,27 @@ import { Component, OnInit } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
 
+declare const MoveSidebarNav: any;
+
 @Component({
   selector: 'app-search-bar',
   templateUrl: './search-bar.component.html',
   styleUrls: ['./search-bar.component.scss']
 })
 export class SearchBarComponent implements OnInit {
+  private allGames = [];
 
-  constructor() {
-    // myFunction()
-
+  constructor(public httpClient: HttpClient) {
+    httpClient.get("https://localhost:5001/api/test/games").subscribe((res: any) => {
+      // this.allGames = res;
+      res.forEach(g => {
+        this.allGames.push(g.GameTitle)
+      });
+    })
   }
 
   ngOnInit() {
-    var sidebar = document.getElementById('sidebar');
-    var mainContent = document.getElementById('main-content');
-    if(sidebar.classList.contains('active'))
-    {
-      document.getElementById('main-content').className = "expanded";
-    }
-    document.getElementById('sidenavbar-postion').onclick = function() {
-        sidebar.classList.toggle('active');
-        mainContent.classList.toggle('expanded');
-    };
-
-
-
-    }
-
-
-
-
-
-
-  // function myFunction()
-  // {
-  //   var httpClient: HttpClient;
-
-  //   var input, filter, ul, li, a, i, txtValue;
-  //   input = document.getElementById("SearchBar");
-  //   filter = input.value.toUpperCase();
-  //   var baseUrl = "https://localhost:5001/api/test/games"
-  //   var listofgames = httpClient.get(baseUrl).subscribe((res: any[]) => {
-  //     console.log(res);
-  //   });
-// }
+    MoveSidebarNav();
+    console.log(this.allGames);
+  }
 }

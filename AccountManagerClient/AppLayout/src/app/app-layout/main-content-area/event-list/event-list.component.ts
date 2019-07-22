@@ -4,6 +4,8 @@ import { EventService } from '../../../event.service';
 
 import { Event } from '../../../models/event';
 
+declare const MoveSidebarNav: any;
+
 @Component({
   selector: 'app-event-list',
   templateUrl: './event-list.component.html',
@@ -20,18 +22,8 @@ export class EventListComponent implements OnInit {
     })
    }
 
-  ngOnInit()
-  {
-    var sidebar = document.getElementById('sidebar');
-    var mainContent = document.getElementById('main-content');
-    if(sidebar.classList.contains('active'))
-    {
-      document.getElementById('main-content').className = "expanded";
-    }
-    document.getElementById('sidenavbar-postion').onclick = function() {
-        sidebar.classList.toggle('active');
-        mainContent.classList.toggle('expanded');
-    };
+   ngOnInit() {
+    MoveSidebarNav();
   }
 
 }
