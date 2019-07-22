@@ -56,9 +56,11 @@ namespace AccountManagerAPI.Controllers
         [HttpGet("listgames")]
         public async Task<IActionResult> ListGames()
         {
-                return Ok(await _Context.Games.Select(g => new {
+                return Ok(await _Context.Games.Include(g => g.Platform).Select(g => new {
                     Id = g.GameId,
-                    Title = g.Name
+                    Title = g.Name,
+                    Platform = g.Platform.Name,
+                    NumberOfAccounts = g.Codes.Count()
                 }).ToListAsync());
 
         }
@@ -117,7 +119,14 @@ namespace AccountManagerAPI.Controllers
         {
             try
             {
-                return Ok(await _Context.Events.ToListAsync());
+                return Ok(await _Context.Events.Include(e => e.Accounts).Select(e => new {
+                    EventId = e.EventId,
+                    Name = e.Name,
+                    Location = e.Location,
+                    StartDate = e.CreatedAt.ToString("MM-dd-yyyy"),
+                    EndDate = e.UpdatedAt.ToString("MM-dd-yyyy"),
+                    AccountsConfirmed = e.Accounts.Count()
+                }).ToListAsync());
             }
             catch(Exception ex)
             {
@@ -143,6 +152,20 @@ namespace AccountManagerAPI.Controllers
             {
                 return StatusCode(500, "Internal Server Error.");
             }
+        }
+
+        // Get api/test/accountslist
+        [HttpGet("accountslist")]
+        public async Task<IActionResult> GetAccountList()
+        {
+            return Ok(await _Context.Accounts.Include(a => a.Event).Include(a => a.Platform).Select(a => new {
+                AccountId = a.AccountId,
+                Username = a.Username,
+                Password = a.Password,
+                Platform = a.Platform.Name,
+                Event = a.Event.Name,
+                Location = a.Event.Location
+            }).ToListAsync());
         }
 
         // GET api/test/gameplatforms
