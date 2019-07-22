@@ -1,0 +1,33 @@
+
+<main id="main-content">
+  <div id="main-content-header" class="main-content-header">
+      <p>Events</p>
+  </div>
+  <div id="main-content-wrapper" class="main-content-wrapper">
+      <div id="items-content-wrapper" class="items-content-wrapper">
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Location</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Number of Accounts Confirmed</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let event of events" >
+              <td>{{event.EventId}}</td>
+              <td>{{event.Name}}</td>
+              <td>{{event.Location}}</td>
+              <td>{{event.StartDate}}</td>
+              <td>{{event.EndDate}}</td>
+              <td>{{event.AccountsConfirmed}}</td>
+            </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</main>

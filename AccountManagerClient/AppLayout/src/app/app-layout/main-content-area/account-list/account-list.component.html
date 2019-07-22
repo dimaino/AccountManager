@@ -1,0 +1,31 @@
+
+<main id="main-content">
+  <div id="main-content-header" class="main-content-header">
+      <p>Accounts</p>
+  </div>
+  <div id="main-content-wrapper" class="main-content-wrapper">
+      <div id="items-content-wrapper" class="items-content-wrapper">
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Username</th>
+          <th>Password</th>
+          <th>Platform</th>
+          <th>Event</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let account of accounts" >
+          <td>{{account.AccountId}}</td>
+          <td>{{account.Username}}</td>
+          <td>{{account.Password}}</td>
+          <td>{{account.Platform}}</td>
+          <td>{{account.Event}} {{account.Location}}</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</main>

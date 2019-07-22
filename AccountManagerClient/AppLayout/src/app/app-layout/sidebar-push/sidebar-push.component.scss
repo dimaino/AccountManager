@@ -1,0 +1,59 @@
+/* ---------------------------------------------------
+                   SIDEBAR
+----------------------------------------------------- */
+
+#sidebar {
+    position: fixed;
+    display: block;
+    height: calc(100% - 50px);
+    min-width: 250px;
+    max-width: 250px;
+    background: #2c2f35;
+    color: #fff;
+    transition: all 0.3s;
+    top: 60px;
+    margin-left: -250px;
+}
+
+/* Show Sidebar */
+#sidebar.active {
+    margin-left: 0px;
+}
+
+#sidebar-header {
+  background-color: #1a242f;
+  text-align: center;
+  font-size: 30px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+ul li a {
+  color: white;
+  padding: 10px;
+}
+
+
+#homeSubmenu, #pageSubmenu{
+  border-top: 1px solid white;
+}
+
+#sidemenuintel, #sidemenuexcel, #sidemenutable {
+  border-top: 1px solid white;
+  background-color: #212429;
+  display: block;
+  text-align: center;
+}
+
+#sidemenuexcel {
+
+}
+
+#homeSubmenu, #pageSubmenu, #tableSubmenu {
+  text-align: center;
+}
+
+
+#sidemenutable {
+  border-bottom: 1px solid white;
+}
