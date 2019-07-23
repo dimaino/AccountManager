@@ -7,6 +7,9 @@ import { Game } from '../../../models/game';
 
 declare const MoveSidebarNav: any;
 
+declare const TableFunctions: any;
+
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-game-list',
@@ -15,16 +18,25 @@ declare const MoveSidebarNav: any;
 })
 export class GameListComponent implements OnInit {
 
-  private games : Game[] = [];
+  private allGames = [];
+  private thing = new Array();
 
-  constructor(private gameService: GameService) {
-    this.gameService.get_games().subscribe((res: any[]) => {
-      this.games = res;
-      console.log(res);
-    });
-   }
+  constructor(public httpClient: HttpClient) {
+    httpClient.get("https://localhost:5001/api/test/games").subscribe((res: any) => {
+      this.allGames = res;
+      // console.log(this.allGames);
+      // this.thing.push(res);
+      res.forEach(g => {
+        this.thing.push(g.GameTitle);
+      });
+    })
+  }
 
   ngOnInit() {
     MoveSidebarNav();
+
+    // console.log(this.allGames);
+    // console.log("table");
+    TableFunctions(document.getElementById("table"), this.thing);
   }
 }
