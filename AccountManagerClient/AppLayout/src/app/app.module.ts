@@ -16,6 +16,11 @@ import { EventListComponent } from './app-layout/main-content-area/event-list/ev
 
 import { AccountListComponent } from './app-layout/main-content-area/account-list/account-list.component';
 import { GameListComponent } from './app-layout/main-content-area/game-list/game-list.component';
+import { FilterTablePipe } from './filter-table.pipe';
+
+import { FormsModule } from '@angular/forms';
+
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -27,12 +32,15 @@ import { GameListComponent } from './app-layout/main-content-area/game-list/game
     TableComponent,
     EventListComponent,
     AccountListComponent,
-    GameListComponent
+    GameListComponent,
+    FilterTablePipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

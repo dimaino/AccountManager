@@ -7,24 +7,23 @@
       <div id="items-content-wrapper" class="items-content-wrapper">
         <div id="table-header" class="row">
           <div id="show-entries" class="col-3">
-            <select>
-              <option value="10">10</option>
-              <option value="25">25</option>
-              <option value="50">50</option>
-              <option value="100">100</option>
-              <option value="1000">All</option>
-            </select>
+              <select (change)="onChange($event.target.value)">
+                  <option value="10">10</option>
+                  <option value="25">25</option>
+                  <option value="50">50</option>
+                  <option value="100">100</option>
+                  <option value="{{devices[4]}}">All</option>
+              </select>
           </div>
           <div id="search-header" class="col-9">
               <div id="seach-table">
-                  <input id="table-search-bar" name="item" type="search" placeholder="Search Rows...">
+<input  id="table-search-bar" [(ngModel)]="searchText" placeholder="Search.." class="advancedSearchTextbox">
               </div>
-            <div id="table-info"># of Entries</div>
 
           </div>
         </div>
-    <table class="table">
-      <thead>
+    <table id="table" class="table">
+      <thead class="test">
         <tr>
           <th>ID</th>
           <th>Title</th>
@@ -33,13 +32,14 @@
         </tr>
       </thead>
       <tbody>
-          <tr *ngFor="let game of games" >
+          <tr class="gamerows" *ngFor="let game of allGames | filterTable: {GameTitle: searchText, Platform: searchText} | paginate: { itemsPerPage: numberToShow, currentPage: p };" >
             <td>{{game.Id}}</td>
-            <td>{{game.Title}}</td>
+            <td>{{game.GameTitle}}</td>
             <td>{{game.Platform}}</td>
             <td>{{game.NumberOfAccounts}}</td>
           </tr>
       </tbody>
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </table>
     </div>
   </div>

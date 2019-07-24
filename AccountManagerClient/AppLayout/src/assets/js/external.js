@@ -1,16 +1,16 @@
-function MoveSidebarNav()
-{
-  var sidebar = document.getElementById('sidebar');
-    var mainContent = document.getElementById('main-content');
-    if(sidebar.classList.contains('active'))
-    {
-      document.getElementById('main-content').className = "expanded";
-    }
-    document.getElementById('sidenavbar-postion').onclick = function() {
-        sidebar.classList.toggle('active');
-        mainContent.classList.toggle('expanded');
-    };
-}
+// function MoveSidebarNav()
+// {
+//   var sidebar = document.getElementById('sidebar');
+//     var mainContent = document.getElementById('main-content');
+//     if(sidebar.classList.contains('active'))
+//     {
+//       document.getElementById('main-content').className = "expanded";
+//     }
+//     document.getElementById('sidenavbar-postion').onclick = function() {
+//         sidebar.classList.toggle('active');
+//         mainContent.classList.toggle('expanded');
+//     };
+// }
 
 // function SearchBarEnter()
 // {
@@ -132,21 +132,3 @@ function Autoccomplete(element, array)
 }
 
 
-function TableFunctions(element, dataset)
-{
-  const count = 0;
-  dataset.forEach(element => {
-    console.log(element);
-  });
-  var myArray = [1,4,5,3,2];
-  myArray.push(10);
-  // console.log(myArray);
-  console.log(dataset);
-  var keys = Object.keys(dataset);
-  console.log(keys);
-
-  for (var prop in dataset) {
-    dataset[prop]
-    break;
-}
-}

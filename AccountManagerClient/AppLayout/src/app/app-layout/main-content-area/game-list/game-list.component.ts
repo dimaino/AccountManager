@@ -19,24 +19,36 @@ import { HttpClient } from '@angular/common/http';
 export class GameListComponent implements OnInit {
 
   private allGames = [];
-  private thing = new Array();
+  public searchText: string;
+  public numberOfGames: number;
+  public p: number;
+  public devices: any = [];
+  public numberToShow: number;
 
-  constructor(public httpClient: HttpClient) {
-    httpClient.get("https://localhost:5001/api/test/games").subscribe((res: any) => {
+
+  constructor(public httpClient: HttpClient) {}
+
+  async ngOnInit(): Promise<void> {
+    MoveSidebarNav();
+    let data = await this.getGames().then((res: any) =>
+    {
       this.allGames = res;
-      // console.log(this.allGames);
-      // this.thing.push(res);
-      res.forEach(g => {
-        this.thing.push(g.GameTitle);
-      });
-    })
+    });
+    TableFunctions(<HTMLElement>document.getElementById("table"), this.allGames);
+    this.p = 1;
+    this.numberOfGames = this.allGames.length;
+    this.devices = [10, 25, 50, 100, this.numberOfGames];
+    this.numberToShow = 25;
   }
 
-  ngOnInit() {
-    MoveSidebarNav();
+  onChange(deviceValue) {
+    console.log(deviceValue);
+    this.numberToShow = deviceValue;
+}
 
-    // console.log(this.allGames);
-    // console.log("table");
-    TableFunctions(document.getElementById("table"), this.thing);
+
+  async getGames()
+  {
+    return this.httpClient.get("https://localhost:5001/api/test/games").toPromise();
   }
 }
