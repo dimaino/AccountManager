@@ -40,11 +40,8 @@ namespace AccountManagerAPI.Controllers
             {
                 return Ok(await _Context.Games.Include(g => g.Platform).Include(g => g.Codes).ThenInclude(c => c.Account).Select(g => new {
                     GameTitle = g.Name,
-                    Platform = g.Platform.Name//,
-                    // Accounts = g.Codes.Select(c => new{
-                    //     Username = c.Account.Username,
-                    //     Password = c.Account.Password
-                    // })
+                    Platform = g.Platform.Name,
+                    NumberOfAccounts = g.Codes.Count()
                 }).ToArrayAsync());
             }
             catch(Exception ex)
