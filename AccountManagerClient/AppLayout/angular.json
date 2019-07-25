@@ -36,7 +36,7 @@
               "node_modules/popper.js/dist/umd/popper.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
               "src/assets/js/external.js",
-              "src/assets/js/tables.js",
+              "src/assets/js/tables.ts",
               "src/assets/js/sidebar.js"
             ]
           },

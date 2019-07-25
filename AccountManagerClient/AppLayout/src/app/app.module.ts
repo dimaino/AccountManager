@@ -10,8 +10,6 @@ import { MainNavbarComponent } from './app-layout/main-navbar/main-navbar.compon
 import { SidebarPushComponent } from './app-layout/sidebar-push/sidebar-push.component';
 import { SearchBarComponent } from './app-layout/main-content-area/search-bar/search-bar.component';
 
-import { TableComponent } from './app-layout/main-content-area/table/table.component';
-
 import { EventListComponent } from './app-layout/main-content-area/event-list/event-list.component';
 
 import { AccountListComponent } from './app-layout/main-content-area/account-list/account-list.component';
@@ -22,6 +20,8 @@ import { FormsModule } from '@angular/forms';
 
 import {NgxPaginationModule} from 'ngx-pagination';
 
+import { Ng2OrderModule } from 'ng2-order-pipe';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +29,6 @@ import {NgxPaginationModule} from 'ngx-pagination';
     MainNavbarComponent,
     SidebarPushComponent,
     SearchBarComponent,
-    TableComponent,
     EventListComponent,
     AccountListComponent,
     GameListComponent,
@@ -40,7 +39,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    Ng2OrderModule
   ],
   providers: [],
   bootstrap: [AppComponent]

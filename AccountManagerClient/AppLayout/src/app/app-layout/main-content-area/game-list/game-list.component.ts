@@ -7,7 +7,7 @@ import { Game } from '../../../models/game';
 
 declare const MoveSidebarNav: any;
 
-declare const TableFunctions: any;
+// declare const TableFunctions: any;
 
 import { HttpClient } from '@angular/common/http';
 
@@ -18,31 +18,49 @@ import { HttpClient } from '@angular/common/http';
 })
 export class GameListComponent implements OnInit {
 
+  // All of the games information from api
   private allGames = [];
+
+  // Currently typed variable
   public searchText: string;
+
+  // Total number of games
   public numberOfGames: number;
+
+  // Starting page number
   public p: number;
+
+  // Items per page in pagination
   public devices: any = [];
+
+  // Starting value of items per page
   public numberToShow: number;
+
+  // Sorting
+  key: string = 'GameTitle';
+  reverse: boolean = false;
+  sort(key) {
+    this.key = key;
+    this.reverse = !this.reverse;
+  }
 
 
   constructor(public httpClient: HttpClient) {}
 
   async ngOnInit(): Promise<void> {
     MoveSidebarNav();
-    let data = await this.getGames().then((res: any) =>
+    await this.getGames().then((res: any) =>
     {
       this.allGames = res;
     });
-    TableFunctions(<HTMLElement>document.getElementById("table"), this.allGames);
     this.p = 1;
     this.numberOfGames = this.allGames.length;
     this.devices = [10, 25, 50, 100, this.numberOfGames];
     this.numberToShow = 25;
   }
 
+  // Track the Change of
   onChange(deviceValue) {
-    console.log(deviceValue);
     this.numberToShow = deviceValue;
 }
 

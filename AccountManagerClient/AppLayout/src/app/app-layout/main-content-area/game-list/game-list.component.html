@@ -5,13 +5,14 @@
   </div>
   <div id="main-content-wrapper" class="main-content-wrapper">
       <div id="items-content-wrapper" class="items-content-wrapper">
+        <ng-container *ngIf="(allGames | filterTable: {GameTitle: searchText, Platform: searchText}) as result">
         <div id="table-header" class="row">
           <div id="show-entries" class="col-3">
-              <select (change)="onChange($event.target.value)">
-                  <option value="10">10</option>
-                  <option value="25" selected>25</option>
-                  <option value="50">50</option>
-                  <option value="100">100</option>
+              <select class="item-per-page-select" (change)="onChange($event.target.value)">
+                  <option value="{{devices[0]}}">10</option>
+                  <option value="{{devices[1]}}" selected>25</option>
+                  <option value="{{devices[2]}}">50</option>
+                  <option value="{{devices[3]}}">100</option>
                   <option value="{{devices[4]}}">All</option>
               </select>
           </div>
@@ -20,31 +21,39 @@
                 <input  id="table-search-bar" [(ngModel)]="searchText" placeholder="Search.." class="advancedSearchTextbox">
               </div>
               <div id="table-info">
-                <p>Filtering {{(allGames | filterTable: {GameTitle: searchText, Platform: searchText})?.length}} of {{numberOfGames}}.</p>
-                <p *ngIf="(allGames | filterTable: {GameTitle: searchText, Platform: searchText})?.length < numberToShow">{{(allGames | filterTable: {GameTitle: searchText, Platform: searchText})?.length}}</p>
-                <p *ngIf="(allGames | filterTable: {GameTitle: searchText, Platform: searchText})?.length > numberToShow">{{numberToShow}}</p>
+                <p>Filtering {{(result)?.length}} of {{numberOfGames}}. </p>
+                <p *ngIf="(result)?.length < numberToShow">Showing {{(result)?.length}} out of {{numberToShow}}</p>
+                <p *ngIf="(result)?.length > numberToShow">Showing {{numberToShow}} out of {{numberToShow}}</p>
               </div>
           </div>
         </div>
     <table id="table" class="table">
       <thead class="test">
         <tr>
-          <th>Title</th>
-          <th>Platform</th>
-          <th>Number of Accounts</th>
+          <th (click)="sort('GameTitle')">Title
+            <span class="" *ngIf="key =='GameTitle'" [ngClass]="{'table-header-title-up':reverse, 'table-header-title-down':!reverse}"></span>
+          </th>
+          <th (click)="sort('Platform')">Platform
+              <span class="" *ngIf="key =='Platform'" [ngClass]="{'table-header-platform-up':reverse, 'table-header-platform-down':!reverse}"></span>
+          </th>
+          <th (click)="sort('NumberOfAccounts')">Number of Accounts
+              <span class="" *ngIf="key =='NumberOfAccounts'" [ngClass]="{'table-header-number-of-accounts-up':reverse, 'table-header-number-of-accounts-down':!reverse}"></span>
+          </th>
         </tr>
       </thead>
       <tbody>
-          <tr class="gamerows" *ngFor="let game of allGames | filterTable: {GameTitle: searchText, Platform: searchText} | paginate: { itemsPerPage: numberToShow, currentPage: p };" >
+          <tr class="gamerows" *ngFor="let game of result | orderBy: key : reverse |  paginate: { itemsPerPage: numberToShow, currentPage: p };" >
             <td>{{game.GameTitle}}</td>
             <td>{{game.Platform}}</td>
             <td>{{game.NumberOfAccounts}}</td>
-            
+
           </tr>
       </tbody>
 
-      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
     </table>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </ng-container>
     </div>
   </div>
 </main>

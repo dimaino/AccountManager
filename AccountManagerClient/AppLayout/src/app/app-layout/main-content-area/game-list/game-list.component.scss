@@ -3,6 +3,14 @@
 
     - Dark Mode is only in the main content area
 ----------------------------------------------------- */
+$main-background-color: #ccc;// #ededed;
+$header-background-color: white;
+$table-background-color: white;
+$table-header-color: lightblue;
+$table-even-row-color: #d2e9f0;
+$table-odd-row-color: #e5f2f7;
+
+
 #main-content {
   transition: all 0.3s;
   height: max-content;
@@ -10,6 +18,7 @@
   position: relative;
   left: 0px;
   width: 100%;
+  background-color: $main-background-color;
 }
 
 /* Expand Main Content */
@@ -19,9 +28,10 @@
 }
 
 .main-content-header {
-  background: white;
+  background-color: $header-background-color;
   color: black;
   border-bottom: 1px solid #ddd;
+  box-shadow: 0 1px 10px 1px lightgrey;
 }
 
 
@@ -32,7 +42,7 @@
 }
 
 .main-content-wrapper {
-  background-color: #ededed;
+  background-color: $main-background-color;
 }
 
 #items-content-wrapper {
@@ -42,21 +52,21 @@
 }
 
 .items-content-wrapper {
-  background-color: white;
+  background-color: $table-background-color;
 }
 
 // Table structure
 th {
   font-weight: bold;
-  background-color: lightblue;
+  background-color: $table-header-color;
 }
 
 tr:nth-child(odd) {
-  background-color: #e5f2f7;
+  background-color: $table-odd-row-color;
 }
 
 tr:nth-child(even) {
-  background-color: #d2e9f0;
+  background-color: $table-even-row-color;
 }
 
 table, td, th {
@@ -69,9 +79,8 @@ table, td, th {
 // Table Click
 
 #table-header {
-  // background-color: red;
-  margin-top: 10px;
   margin-bottom: 10px;
+  padding-top: 10px;
 }
 
 #search-table {
@@ -81,6 +90,107 @@ table, td, th {
 #table-info {
   float: right;
   padding-right: 15px;
+  padding-top: 5px;
 }
 
 
+#table-info p {
+  display: inline;
+
+}
+
+pagination-controls {
+  text-align: center;
+}
+
+span {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+  float: right;
+  margin-top: 8px;
+}
+
+.table-header-title-up {
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+}
+
+.table-header-title-down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+
+.table-header-platform-up {
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+}
+
+
+.table-header-platform-down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+
+
+.table-header-number-of-accounts-up {
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+}
+
+.table-header-number-of-accounts-down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+
+.table td {
+  vertical-align: middle;
+}
+
+.table {
+  margin-left: 10px;
+  width: calc(100% - 20px);
+}
+
+table {
+  table-layout: fixed;
+  word-wrap: break-word;
+}
+
+
+.item-per-page-select {
+  border-radius: 5px;
+  padding-bottom: 5px;
+  padding-left: 40px;
+  padding-top: 5px;
+  padding-right: 40px;
+  border-color: lightgrey;
+  outline: none;
+  margin-left: 10px;
+}
+
+// Searchbar Table
+#table-search-bar {
+  border-radius: 10px;
+  font-size: 22px;
+  border: none;
+  box-shadow: 0px 0 1px 1px lightgrey;
+  text-align: center;
+  margin-right: 10px;
+}
+
+
+#table-search-bar:focus {
+  outline: none;
+  box-shadow: 0 0 2px 2px rgb(183, 141, 238);
+}
+
+
+th:hover {
+  background-color: #78b4c9;
+}
+
+tr:hover {
+  background: lightblue;
+}
