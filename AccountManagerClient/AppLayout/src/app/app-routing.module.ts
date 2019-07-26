@@ -8,6 +8,8 @@ import { EventListComponent } from './app-layout/main-content-area/event-list/ev
 import { AccountListComponent } from './app-layout/main-content-area/account-list/account-list.component';
 import { GameListComponent } from './app-layout/main-content-area/game-list/game-list.component';
 
+import { GameViewComponent } from './app-layout/main-content-area/game-view/game-view.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -29,6 +31,10 @@ const routes: Routes = [
   {
     path: 'games',
     component: GameListComponent
+  },
+  {
+    path: 'gameview/:id',
+    component: GameViewComponent
   }
 ];
 

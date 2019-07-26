@@ -1,0 +1,46 @@
+<br>
+	<br>
+		<br>
+			<h1 style="text-align: center">{{game?.Title}}</h1>
+			<!-- <h1 style="text-align: center">{{game?.Accounts.length}}</h1> -->
+			<ng-container *ngIf="game?.Accounts.length > 0; else thing1">
+				<table class="table">
+					<tr>
+						<th>Account ID</th>
+						<th>Username</th>
+						<th>Password</th>
+						<th>Email</th>
+						<th>Email Password</th>
+						<th>Code</th>
+					</tr>
+					<tr *ngFor="let account of game.Accounts">
+						<!-- Used for codes without accounts -->
+						<ng-container *ngIf="account.AccountId">
+							<td>{{account.AccountId}}</td>
+							<td>{{account.Username}}</td>
+							<td>{{account.Password}}</td>
+							<td>{{account.Email}}</td>
+							<td>{{account.EmailPassword}}</td>
+							<td>{{account.Code}}</td>
+						</ng-container>
+					</tr>
+				</table>
+			</ng-container>
+			<ng-template #thing1>
+				<h3 style="text-align: center">No Accounts under this game yet.</h3>
+			</ng-template>
+			<ng-container *ngIf="game?.Accounts.length > 0; else thing2">
+				<table class="table">
+					<tr>
+						<th>Code</th>
+					</tr>
+					<tr *ngFor="let account of game.Accounts">
+						<ng-container *ngIf="!account.AccountId && account.Code;">
+							<td>{{account.Code}}</td>
+						</ng-container>
+					</tr>
+				</table>
+			</ng-container>
+			<!-- <ng-container #thing2>
+				<h3 style="text-align: center">No Codes under this game yet.</h3>
+			</ng-container> -->

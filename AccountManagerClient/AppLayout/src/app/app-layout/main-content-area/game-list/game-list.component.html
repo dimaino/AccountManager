@@ -18,7 +18,7 @@
           </div>
           <div id="search-header" class="col-9">
               <div id="search-table">
-                <input  id="table-search-bar" [(ngModel)]="searchText" placeholder="Search.." class="advancedSearchTextbox">
+                <input  id="table-search-bar" [(ngModel)]="searchText" placeholder="Search.." class="advancedSearchTextbox" autocomplete="off">
               </div>
               <div id="table-info">
                 <p>Filtering {{(result)?.length}} of {{numberOfGames}}. </p>
@@ -42,8 +42,8 @@
         </tr>
       </thead>
       <tbody>
-          <tr class="gamerows" *ngFor="let game of result | orderBy: key : reverse |  paginate: { itemsPerPage: numberToShow, currentPage: p };" >
-            <td>{{game.GameTitle}}</td>
+          <tr class="gamerows" *ngFor="let game of result | orderBy: key : reverse : true |  paginate: { itemsPerPage: numberToShow, currentPage: p };" >
+            <td><a [routerLink]="['/gameview', game.Id]" class="nav-link" routerLinkActive="active">{{game.GameTitle}}</a></td>
             <td>{{game.Platform}}</td>
             <td>{{game.NumberOfAccounts}}</td>
 

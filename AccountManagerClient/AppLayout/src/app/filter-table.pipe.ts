@@ -19,6 +19,8 @@ export class FilterTablePipe implements PipeTransform {
     if(filter && Array.isArray(items))
     {
       let filterKeys = Object.keys(filter);
+      console.log(items.filter(item =>
+        filterKeys.reduce((x, keyName) => filter[keyName])));
 
       if (defaultFilter) {
         return items.filter(item =>

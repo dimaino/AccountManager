@@ -36,12 +36,16 @@ export class GameListComponent implements OnInit {
   // Starting value of items per page
   public numberToShow: number;
 
+
+
   // Sorting
   key: string = 'GameTitle';
   reverse: boolean = false;
+  caseInsensitive:boolean = true;
   sort(key) {
     this.key = key;
     this.reverse = !this.reverse;
+    // this.caseInsensitive = false;
   }
 
 

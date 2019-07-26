@@ -39,7 +39,8 @@ namespace AccountManagerAPI.Controllers
             try
             {
                 return Ok(await _Context.Games.Include(g => g.Platform).Include(g => g.Codes).ThenInclude(c => c.Account).Select(g => new {
-                    GameTitle = g.Name,
+                    Id = g.GameId,
+                    GameTitle = g.Name.ToUpper(),
                     Platform = g.Platform.Name,
                     NumberOfAccounts = g.Codes.Count()
                 }).ToArrayAsync());
@@ -71,6 +72,8 @@ namespace AccountManagerAPI.Controllers
                 g.GameId,
                 Title = g.Name,
                 Accounts = g.Codes.Select(c => new {
+                    Code = c.CodeString,
+                    AccountId = c.Account.AccountId,
                     Username = c.Account.Username,
                     Password = c.Account.Password,
                     Email = c.Account.EmailAccount.Email,
@@ -139,6 +142,7 @@ namespace AccountManagerAPI.Controllers
             try
             {
                 return Ok(await _Context.Accounts.Include(a => a.Codes).Select(a => new{
+                    Id = a.AccountId,
                     Username = a.Username,
                     a.Platform.Name,
                     Codes = a.Codes.Select(c => new {

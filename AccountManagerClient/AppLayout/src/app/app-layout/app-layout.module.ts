@@ -7,11 +7,12 @@ import { SearchBarComponent } from './main-content-area/search-bar/search-bar.co
 import { EventListComponent } from './main-content-area/event-list/event-list.component';
 import { GameListComponent } from './main-content-area/game-list/game-list.component';
 import { AccountListComponent } from './main-content-area/account-list/account-list.component';
+import { GameViewComponent } from './main-content-area/game-view/game-view.component';
 
 
 
 @NgModule({
-  declarations: [MainNavbarComponent, SidebarPushComponent, MainContentAreaComponent, SearchBarComponent, EventListComponent, GameListComponent, AccountListComponent],
+  declarations: [MainNavbarComponent, SidebarPushComponent, MainContentAreaComponent, SearchBarComponent, EventListComponent, GameListComponent, AccountListComponent, GameViewComponent],
   imports: [
     CommonModule
   ]
