@@ -16,6 +16,9 @@ using Newtonsoft.Json;
 using System.Buffers;
 using Microsoft.EntityFrameworkCore;
 
+using System.IO;
+using Microsoft.Extensions.FileProviders;
+
 namespace AccountManagerAPI
 {
     public class Startup
@@ -65,6 +68,7 @@ namespace AccountManagerAPI
 
             app.UseCors("CorsPolicy");
             app.UseHttpsRedirection();
+            app.UseStaticFiles(new StaticFileOptions { FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images")), RequestPath = "/MyImages" });
             app.UseMvc();
         }
     }

@@ -13,8 +13,12 @@ namespace AccountManagerAPI.Models
         public DbSet<EmailAccount> EmailAccounts {get;set;}
         public DbSet<Event> Events {get;set;}
         public DbSet<Game> Games {get;set;}
-        public DbSet<GamePlatform> GamePlatforms {get;set;}
         public DbSet<Platform> Platforms {get;set;}
+
+        // Extra
+        public DbSet<Rating> Ratings {get;set;}
+        public DbSet<GameRating> GameRatings {get;set;}
+
 
         protected override void OnModelCreating(ModelBuilder ModelBuilder)
         {
@@ -23,8 +27,13 @@ namespace AccountManagerAPI.Models
 
             // Create All Keys for Manay to Many tables
             ModelBuilder.Entity<Account>().HasKey(a => new { a.EmailAccountId, a.PlatformId });
-            // ModelBuilder.Entity<Code>().HasKey(c => new { c.AccountId, c.GameId });
-            ModelBuilder.Entity<GamePlatform>().HasKey(gp => new { gp.GameId, gp.PlatformId });
+
+            ModelBuilder.Entity<GameRating>().HasKey(gr => new { gr.GameId, gr.RatingId });
+
+
+            // Change Enum vaule to strings
+            ModelBuilder.Entity<Rating>().Property(r => r.RatingsSystem).HasConversion<string>();
+            ModelBuilder.Entity<Rating>().Property(r => r.RatingsCountry).HasConversion<string>();
 
             // Create base model
             base.OnModelCreating(ModelBuilder);
@@ -34,9 +43,10 @@ namespace AccountManagerAPI.Models
             ModelBuilder.CodeSeedData();
             ModelBuilder.EmailAccountSeedData();
             ModelBuilder.EventSeedData();
-            ModelBuilder.GamePlatformSeedData();
             ModelBuilder.GameSeedData();
             ModelBuilder.PlatformSeedData();
+            ModelBuilder.RatingSeedData();
+            ModelBuilder.GameRatingSeedData();
         }
     }
 }

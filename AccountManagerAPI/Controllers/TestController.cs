@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 using AccountManagerAPI.Models;
 using Microsoft.EntityFrameworkCore;
 
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
+
 namespace AccountManagerAPI.Controllers
 {
     [Route("api/[controller]")]
@@ -13,8 +16,10 @@ namespace AccountManagerAPI.Controllers
     public class TestController : ControllerBase
     {
         private readonly Context _Context;
-        public TestController(Context Context)
+        private readonly IHostingEnvironment _HostingEnvironment;
+        public TestController(Context Context, IHostingEnvironment HostingEnvironment)
         {
+            _HostingEnvironment = HostingEnvironment;
             _Context = Context;
         }
 
@@ -28,7 +33,8 @@ namespace AccountManagerAPI.Controllers
             }
             catch(Exception ex)
             {
-                return StatusCode(500, "Internal Server Error.");
+                return StatusCode(500, "Internal Server Error: " + ex);
+                // return StatusCode(500, "Internal Server Error.");
             }
         }
 
@@ -47,7 +53,8 @@ namespace AccountManagerAPI.Controllers
             }
             catch(Exception ex)
             {
-                return StatusCode(500, "Internal Server Error.");
+                return StatusCode(500, "Internal Server Error: " + ex);
+                // return StatusCode(500, "Internal Server Error.");
             }
         }
 
@@ -64,13 +71,34 @@ namespace AccountManagerAPI.Controllers
 
         }
 
+        [HttpGet("image")]
+        public string Get()
+        {
+            string url = $"{Request.Scheme}://{Request.Host}{Request.PathBase}/myimages/acb/e.png";
+            return url;
+            //  var path = Path.Combine(_HostingEnvironment.WebRootPath, "images/ACB/E.PNG");
+            //  return path;
+            // var path = Path.Combine(_HostingEnvironment.WebRootPath, "images", $"{name}.png");
+            // var imageFileStream = System.IO.File.OpenRead(path);
+            // return File(imageFileStream, "image/png");
+        }
+
+
+
         // GET api/test/games/1
         [HttpGet("games/{id}")]
         public async Task<IActionResult> GetGameWithID(int id)
         {
-            return Ok(await _Context.Games.Include(g => g.Codes).ThenInclude(c => c.Account).ThenInclude(a => a.EmailAccount).Select(g => new {
+            return Ok(await _Context.Games.Include(g => g.Codes).ThenInclude(c => c.Account).ThenInclude(a => a.EmailAccount).Include(a => a.GameRatings).ThenInclude(gr => gr.Rating).Select(g => new {
                 g.GameId,
                 Title = g.Name,
+                GameRatings = g.GameRatings.Select(gr => new {
+                    RatingSystem = gr.Rating.RatingsSystem.ToString(),
+                    County = gr.Rating.RatingsCountry.ToString(),
+                    Name = gr.Rating.Name,
+                    Age = gr.Rating.Age,
+                    ImageLink = gr.Rating.ImageLink
+                }),
                 Accounts = g.Codes.Select(c => new {
                     Code = c.CodeString,
                     AccountId = c.Account.AccountId,
@@ -92,7 +120,8 @@ namespace AccountManagerAPI.Controllers
             }
             catch(Exception ex)
             {
-                return StatusCode(500, "Internal Server Error.");
+                return StatusCode(500, "Internal Server Error: " + ex);
+                // return StatusCode(500, "Internal Server Error.");
             }
         }
 
@@ -110,7 +139,8 @@ namespace AccountManagerAPI.Controllers
             }
             catch(Exception ex)
             {
-                return StatusCode(500, "Internal Server Error.");
+                return StatusCode(500, "Internal Server Error: " + ex);
+                // return StatusCode(500, "Internal Server Error.");
             }
         }
 
@@ -131,7 +161,8 @@ namespace AccountManagerAPI.Controllers
             }
             catch(Exception ex)
             {
-                return StatusCode(500, "Internal Server Error.");
+                return StatusCode(500, "Internal Server Error: " + ex);
+                // return StatusCode(500, "Internal Server Error.");
             }
         }
 
@@ -152,7 +183,8 @@ namespace AccountManagerAPI.Controllers
             }
             catch(Exception ex)
             {
-                return StatusCode(500, "Internal Server Error.");
+                return StatusCode(500, "Internal Server Error: " + ex);
+                // return StatusCode(500, "Internal Server Error.");
             }
         }
 
@@ -170,18 +202,18 @@ namespace AccountManagerAPI.Controllers
             }).ToListAsync());
         }
 
-        // GET api/test/gameplatforms
-        [HttpGet("gameplatforms")]
-        public async Task<IActionResult> GetGamePlatforms()
-        {
-            try
-            {
-                return Ok(await _Context.GamePlatforms.ToListAsync());
-            }
-            catch(Exception ex)
-            {
-                return StatusCode(500, "Internal Server Error.");
-            }
-        }
+        // // GET api/test/gameplatforms
+        // [HttpGet("gameplatforms")]
+        // public async Task<IActionResult> GetGamePlatforms()
+        // {
+        //     try
+        //     {
+        //         return Ok(await _Context.GamePlatforms.ToListAsync());
+        //     }
+        //     catch(Exception ex)
+        //     {
+        //         return StatusCode(500, "Internal Server Error.");
+        //     }
+        // }
     }
 }

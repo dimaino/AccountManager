@@ -25,5 +25,8 @@ namespace AccountManagerAPI.Models
         public ICollection<Code> Codes {get;} = new List<Code>();
         public int PlatformId {get;set;}
         public Platform Platform {get;set;}
+
+        public ICollection<GameRating> GameRatings {get;} = new List<GameRating>();
+
     }
 }
