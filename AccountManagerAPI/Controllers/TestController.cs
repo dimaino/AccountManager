@@ -92,6 +92,8 @@ namespace AccountManagerAPI.Controllers
             return Ok(await _Context.Games.Include(g => g.Codes).ThenInclude(c => c.Account).ThenInclude(a => a.EmailAccount).Include(a => a.GameRatings).ThenInclude(gr => gr.Rating).Select(g => new {
                 g.GameId,
                 Title = g.Name,
+                g.Platform.Name,
+                g.URLToDocumentation,
                 GameRatings = g.GameRatings.Select(gr => new {
                     RatingSystem = gr.Rating.RatingsSystem.ToString(),
                     County = gr.Rating.RatingsCountry.ToString(),
