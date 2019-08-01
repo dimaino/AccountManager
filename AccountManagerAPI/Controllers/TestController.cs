@@ -94,6 +94,7 @@ namespace AccountManagerAPI.Controllers
                 Title = g.Name,
                 g.Platform.Name,
                 g.URLToDocumentation,
+                g.ReleaseDate,
                 GameRatings = g.GameRatings.Select(gr => new {
                     RatingSystem = gr.Rating.RatingsSystem.ToString(),
                     County = gr.Rating.RatingsCountry.ToString(),
@@ -110,6 +111,24 @@ namespace AccountManagerAPI.Controllers
                     EmailPassword = c.Account.EmailAccount.EmailPassword
                 })
             }).FirstOrDefaultAsync(g => g.GameId == id));
+        }
+
+        // DELETE api/test/game/{id}
+        [HttpDelete("games/delete/{id}")]
+        public async Task<IActionResult> DeleteGameWithID(int id)
+        {
+            Game Game = await _Context.Games.FirstOrDefaultAsync(g => g.GameId == id);
+            foreach(var code in Game.Codes)
+            {
+                _Context.Codes.Remove(code);
+            }
+            foreach(var gr in Game.GameRatings)
+            {
+                _Context.GameRatings.Remove(gr);
+            }
+            _Context.Games.Remove(Game);
+            _Context.SaveChanges();
+            return NoContent();
         }
 
         // GET api/test/platforms
